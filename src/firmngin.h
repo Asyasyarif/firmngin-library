@@ -26,7 +26,7 @@ public:
 
     // Network configuration methods
     Firmngin &setWiFi(const char *ssid, const char *password);
-    Firmngin &setMqttServer(const char *server, uint16_t port);
+    Firmngin &setMqttServer(const char *server = DEFAULT_MQTT_SERVER, uint16_t port = DEFAULT_MQTT_PORT);
     Firmngin &setMqttCredentials(const char *username, const char *password);
     Firmngin &enableAutoReconnect();
     Firmngin &onWiFiConnected(std::function<void()> callback);
@@ -99,6 +99,9 @@ private:
     bool _locationEnabled = false;
     String _lastLatitude;
     String _lastLongitude;
+
+    static constexpr const char *DEFAULT_MQTT_SERVER = "broker.hivemq.com";
+    static constexpr uint16_t DEFAULT_MQTT_PORT = 1883;
 
     void processBatchUpdates();
     void handleOTA();

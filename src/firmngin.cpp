@@ -4,7 +4,10 @@ Firmngin::Firmngin(const String &deviceKey, const String &apiKey)
     : _deviceKey(deviceKey), _apiKey(apiKey),
       _network(deviceKey, _debugMode),
       _buffer(100, _debugMode),
-      _pins(_debugMode) {}
+      _pins(_debugMode)
+{
+    _network.setupMqtt(DEFAULT_MQTT_SERVER, DEFAULT_MQTT_PORT);
+}
 
 Firmngin &Firmngin::begin()
 {
